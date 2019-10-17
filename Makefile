@@ -11,4 +11,4 @@ vendor: composer.json composer.lock
 	touch vendor
 
 deploy:
-	ssh dicky@rss.shnbk.de "cd domains/rss.shnbk.de/app && git pull"
+	ssh dicky@rss.shnbk.de "cd domains/rss.shnbk.de/app && git pull && make setup"
