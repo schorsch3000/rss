@@ -3,11 +3,14 @@ let domReady = function (callback) {
 };
 domReady(function () {
     let loadItem = function (element) {
+        if(element.classList.contains('loading')) return
+        element.classList.add('loading')
         fetch(element.getAttribute('data-url')+'index.html')
             .then((response) => response.text())
             .then((html) => {
                 element.outerHTML = html;
                 element.classList.remove('unloaded')
+                element.classList.remove('loading')
                 element.classList.add('loaded')
             })
     }
