@@ -90,7 +90,6 @@ foreach ($feed->get_items() as $feedItem) {
             }
             $filter = new $filterClass;
             /** @var $filter \Rss\Filter\FilterInterface */
-            print_r($options);
             $filter->setOptions($options);
             $dataItem = $filter->filter($dataItem);
         }
