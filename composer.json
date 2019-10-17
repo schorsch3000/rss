@@ -12,7 +12,8 @@
     "pug-php/pug": "^3.3",
     "andreskrey/readability.php": "^2.1",
     "electrolinux/phpquery": "^0.9.6",
-    "symfony/yaml": "^3.4"
+    "symfony/yaml": "^3.4",
+    "sebastian/diff": "^3.0"
   },
   "autoload": {
     "psr-4": {

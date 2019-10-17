@@ -1,12 +1,15 @@
 #!/usr/bin/env php
 <?php
+require "vendor/autoload.php";
 
+use SebastianBergmann\Diff\Differ;
 use Symfony\Component\Yaml\Yaml;
+
+$differ = new Differ;
 
 ini_set('default_socket_timeout', 30);
 
 chdir(__DIR__);
-require "vendor/autoload.php";
 $conf = Yaml::parse(file_get_contents("config.yaml"));
 
 if ($_SERVER['argc'] === 1) {
@@ -63,9 +66,7 @@ foreach ($feed->get_items() as $feedItem) {
     $itemDir = $feedDir . "/" . $itemId;
     if (is_dir($itemDir)) {
         touch($itemDir);
-        $update = true;
     } else {
-        $update = false;
         loginfo("    Creating directory");
         mkdir($itemDir, 0777, true);
         file_put_contents($itemDir . '/FIRST_SEEN', time());
@@ -73,7 +74,6 @@ foreach ($feed->get_items() as $feedItem) {
 
 
     $dataItem = new \Rss\Item();
-    $dataItem->setUpdate($update ? time() : null);
     $dataItem->setTitle($feedItem->get_title());
     $dataItem->setContent($feedItem->get_content());
     $dataItem->setFeed($feed->get_title());
@@ -103,6 +103,7 @@ foreach ($feed->get_items() as $feedItem) {
     $jsonFile = $feedDir . "/$itemId/data.json";
     touch($jsonFile);
     if (file_get_contents($jsonFile) !== $fileContent) {
+        logInfo($differ->diff((file_get_contents($jsonFile)), $fileContent));
         file_put_contents($jsonFile, $fileContent);
         touch($feedDir . "/" . $itemId . '/NEW');
         @unlink("$feedDir/$itemId/index.html");
@@ -114,9 +115,6 @@ foreach ($feed->get_items() as $feedItem) {
 
 
 loginfo("Loaded $new new items");
-
-
-
 
 
 function isTTY()

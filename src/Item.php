@@ -25,10 +25,7 @@ class Item implements \JsonSerializable
     {
         $this->feedId = $feedId;
     }
-    /**
-     * @var null|int
-     */
-    protected $update = null;
+
     /**
      * @var string
      */
@@ -60,22 +57,6 @@ class Item implements \JsonSerializable
         foreach((array)$messages as $message){
             $this->messages[]=$message;
         }
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getUpdate()
-    {
-        return $this->update;
-    }
-
-    /**
-     * @param int|null $update
-     */
-    public function setUpdate($update)
-    {
-        $this->update = $update;
     }
 
     /**
@@ -145,7 +126,6 @@ class Item implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            "update" => $this->getUpdate(),
             "title" => $this->getTitle(),
             "content" => $this->getContent(),
             "feed" => $this->getFeed(),
