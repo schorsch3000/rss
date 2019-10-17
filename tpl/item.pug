@@ -1,0 +1,7 @@
+article(data-new=$NEW_INT data-first-seed=$FIRST_SEEN data-url=$itemurl class="feed-"+$feedId)
+    h1 !=feed
+    h2
+        a(href=$url target="blank") !=title
+    for msg in messages
+        pre.log !=msg
+    p !=content

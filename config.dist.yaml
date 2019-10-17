@@ -1,0 +1,24 @@
+user: admin
+pass: 21232f297a57a5a743894a0e4a801fc3
+feeds:
+  letsencrypt:
+    url: 'https://letsencrypt.org/feed.xml'
+    lastFetched: 1571297401
+  turnoff.us:
+    url: 'http://turnoff.us/feed.xml'
+    lastFetched: 1571298001
+  what-if-xkcd:
+    url: 'http://what-if.xkcd.com/feed.atom'
+    lastFetched: 1571301302
+    filters:
+      UnEscape: null
+      FixLinks:
+        base: 'http://what-if.xkcd.com'
+  fefe:
+    url: 'http://blog.fefe.de/rss.xml?html'
+    lastFetched: 1571295301
+  xkcd:
+    url: 'http://xkcd.com/atom.xml'
+    lastFetched: 1571295001
+    filters:
+      XKCD: null

@@ -1,0 +1,22 @@
+{
+  "name": "rss/backend",
+  "authors": [
+    {
+      "name": "Dirk Heilig",
+      "email": "dirk@heilig-online.com"
+    }
+  ],
+  "require": {
+    "simplepie/simplepie": "^1.5",
+    "klein/klein": "^2.1",
+    "pug-php/pug": "^3.3",
+    "andreskrey/readability.php": "^2.1",
+    "electrolinux/phpquery": "^0.9.6",
+    "symfony/yaml": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rss\\": "./src/"
+    }
+  }
+}
