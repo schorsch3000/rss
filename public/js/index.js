@@ -22,7 +22,11 @@ domReady(function () {
     let next = function (keep) {
         let currentEl = document.querySelector("#main>article[data-new='1']")
         currentEl.setAttribute('data-new', '0')
-        document.querySelector("#main>article[data-new='1']").scrollIntoView(true)
+        try {
+            document.querySelector("#main>article[data-new='1']").scrollIntoView(true)
+        }catch (e) {
+            
+        }
         window.scrollBy(0, -15)
         let nextEl = document.getElementsByClassName('unloaded')
         if (nextEl.length) {
