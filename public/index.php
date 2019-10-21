@@ -2,6 +2,33 @@
 chdir(__DIR__ . '/../');
 require "vendor/autoload.php";
 
+
+/**
+ *
+ * minimize assets
+ */
+
+$assetDirs = [__DIR__ . '/js/*.js', __DIR__ . '/css/*.css'];
+foreach ($assetDirs as $assetDir) {
+    foreach (glob($assetDir) as $assetSrc) {
+        if (strpos($assetSrc, '.min.')) continue;
+        $assetDest = preg_replace('/(\.[^.]*)$/', '.min$1', $assetSrc);
+        if (!is_file($assetDest) || filemtime($assetDest) < filemtime($assetSrc)) {
+            if (substr($assetSrc, -2) === 'js') {
+                $min = new MatthiasMullie\Minify\JS($assetSrc);
+            } else {
+                $min = new MatthiasMullie\Minify\CSS($assetSrc);
+            }
+            $min->minify($assetDest);
+        }
+    }
+}
+
+/**
+ *  actual index
+ */
+
+
 $klein = new \Klein\Klein();
 
 $klein->respond(function ($request, $response, $service, $app) use ($klein) {

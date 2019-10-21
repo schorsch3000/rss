@@ -3,3 +3,5 @@ public/data
 vendor
 cache
 config.yaml
+public/js/*.min.js
+public/css/*.min.css
